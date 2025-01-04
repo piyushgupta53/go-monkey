@@ -2,21 +2,19 @@ package main
 
 import (
 	"fmt"
+	"os"
+	"os/user"
 
-	"github.com/piyushgupta53/go-monkey/lexer"
+	"github.com/piyushgupta53/go-monkey/repl"
 )
 
 func main() {
-	input := `let x = 5;`
-	l := lexer.New(input)
-
-	// Read all tokens
-	for {
-		tok := l.NextToken()
-		fmt.Printf("%+v\n", tok)
-
-		if tok.Type == "EOF" {
-			break
-		}
+	user, err := user.Current()
+	if err != nil {
+		panic(err)
 	}
+	fmt.Printf("Hello %s! This is the Monkey programming language!\n",
+		user.Username)
+	fmt.Printf("Feel free to type in commands\n")
+	repl.Start(os.Stdin, os.Stdout)
 }

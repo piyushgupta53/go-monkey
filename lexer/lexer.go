@@ -22,7 +22,6 @@ func (l *Lexer) readChar() {
 		l.ch = 0
 	} else {
 		// If not, set current char to next char
-
 		l.ch = l.input[l.readPosition]
 	}
 
